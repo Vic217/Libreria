@@ -15,3 +15,9 @@ function Libro(titulo, autor, paginas, leido) {
 function agregarLibroALibreria(nuevo) {
     miLibreria.push(nuevo);
 }
+
+function recorrer(miLibreria) {
+    miLibreria.forEach(element => {
+        console.log(element);
+    });
+}
