@@ -11,3 +11,7 @@ function Libro(titulo, autor, paginas, leido) {
         return titulo + ", " + autor + ", " + paginas + ", " + leido;
     };
 }
+
+function agregarLibroALibreria(nuevo) {
+    miLibreria.push(nuevo);
+}
