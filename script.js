@@ -1,5 +1,16 @@
 // Variables
+const agregarNuevo = document.getElementById("agregar_nuevo");
+const dialogo = document.getElementById("dialogo");
+const cerrarFormulario = document.getElementById("cerrar");
 const miLibreria = [];
+
+agregarNuevo.addEventListener("click", () => {
+    dialogo.showModal(); // Abre el cuadro de diálogo
+});
+
+cerrarFormulario.addEventListener("click", () => {
+    dialogo.close(); // Cierra el cuadro de diálogo
+});
 
 // Constructor de Objetos
 function Libro(titulo, autor, paginas, leido) {
