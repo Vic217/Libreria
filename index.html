@@ -26,7 +26,7 @@
         </tbody>
     </table>
 
-    <button id="agregar_nuevo">Agregar Nuevo Libro</button>
+    <button id="agregar_nuevo" class="boton">Agregar Nuevo Libro</button>
 
     <dialog id="dialogo">
         <form action="" method="" id="formulario">
@@ -37,13 +37,15 @@
             <input type="text" id="autor" required>
     
             <label for="paginas">Numero de páginas: </label>
-            <input type="text" id="paginas" required>
+            <input type="number" id="paginas" required>
     
             <label for="leido">¿Lo has leido? </label>
             <input type="checkbox" id="leido">
         </form>
-        <button id="añadir">Añadir</button>
-        <button id="cerrar">cerrar</button>
+        <div id="botones-dialog">
+            <button id="añadir" class="boton">Añadir</button>
+            <button id="cerrar" class="boton">cerrar</button>
+        </div>
     </dialog>
 </body>
 </html>
