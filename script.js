@@ -20,18 +20,23 @@ function Libro(titulo, autor, paginas, leido) {
     this.leido = leido;
 }
 
+// Creo un prototipo con el método para cambiar el estado de leido
 Libro.prototype.cambiarLeido = function() {
     this.leido = !this.leido;
 }
 
+// Función que invoca el metodo del prototipo
 function cambiarLeido(indice) {
     miLibreria[indice].cambiarLeido();
 
     recorrer();
 }
 
+// Función de eliminar_libro
 function eliminar_libro(indice) {
     miLibreria.splice(indice, 1);
+
+    // Cambia id de tabla cuando no tiene libros registrados
     if (miLibreria.length === 0){
         const con_datos = document.getElementById("datos");
         con_datos.removeAttribute("id");
@@ -42,8 +47,11 @@ function eliminar_libro(indice) {
 
 // Recorrer la lista
 function recorrer() {
+
+    // Elimina la información que previamente tenía la tabla
     cuerpo.innerHTML = "";
 
+    // Agrega la información de cada libro en la tabla
     for (let i = 0; i < miLibreria.length; i++){
         const nueva_fila = document.createElement("tr");
         nueva_fila.setAttribute("class", "nueva");
@@ -75,10 +83,12 @@ function recorrer() {
         nueva_fila.appendChild(eliminar);
         cuerpo.appendChild(nueva_fila);
 
+        // Elimina datos de la tabla, invoca la función eliminar_libro 
         botonEliminar.addEventListener("click", () => {
             eliminar_libro(i);
         });
 
+        // Cambia el estado del leido del libro, invoca la función cambiarLeido
         botonLeido.addEventListener("click", () => {
             cambiarLeido(i);
         })
