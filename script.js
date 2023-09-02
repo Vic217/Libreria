@@ -75,6 +75,7 @@ function recorrer() {
         botonEliminar.textContent = "eliminar";
         eliminar.appendChild(botonEliminar);
         botonEliminar.setAttribute("id", i);
+        botonEliminar.setAttribute("class", "boton")
 
         nueva_fila.appendChild(celdaT);
         nueva_fila.appendChild(celdaA);
@@ -106,7 +107,7 @@ añadir.addEventListener("click", (e) => {
 
     // Verifica si los campos del formulario están llenos
     if (titulo.value && autor.value && paginas.value) {
-        const nuevo_libro = new Libro(titulo.value, autor.value, paginas.value, leido.checked);
+        const nuevo_libro = new Libro(titulo.value, autor.value, paginas.value + " paginas", leido.checked);
         agregarLibroALibreria(nuevo_libro);
         formulario.reset();
         dialogo.close();
