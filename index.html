@@ -10,7 +10,7 @@
 <body>
     <h1>La Libreria</h1>
 
-    <table id="tabla">
+    <table id="vacia">
         <caption>Nuestros titulos</caption>
         <thead>
             <tr>
@@ -21,7 +21,7 @@
                 <th>Eliminar</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="cuerpo">
 
         </tbody>
     </table>
@@ -29,7 +29,7 @@
     <button id="agregar_nuevo">Agregar Nuevo Libro</button>
 
     <dialog id="dialogo">
-        <form action="" method="">
+        <form action="" method="" id="formulario">
             <label for="titulo">Nombre del Libro: </label>
             <input type="text" id="titulo" required>
     
@@ -42,7 +42,8 @@
             <label for="leido">¿Lo has leido? </label>
             <input type="checkbox" id="leido">
         </form>
-        <button id="cerrar">Cerrar</button>
+        <button id="añadir">Añadir</button>
+        <button id="cerrar">cerrar</button>
     </dialog>
 </body>
 </html>
