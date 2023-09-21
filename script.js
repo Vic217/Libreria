@@ -12,32 +12,40 @@ const cuerpo = document.getElementById("cuerpo");
 const vacia = document.getElementById("vacia");
 const miLibreria = [];
 
-// Constructor de Objetos
-function Libro(titulo, autor, paginas, leido) {
-    this.titulo = titulo;
-    this.autor = autor;
-    this.paginas = paginas;
-    this.leido = leido;
+// Clase para representar un libro
+class Libro {
+    constructor(titulo, autor, paginas, leido) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.paginas = paginas;
+        this.leido = leido;
+    }
+
+    cambiarLeido() {
+        this.leido = !this.leido;
+    }
 }
 
-// Creo un prototipo con el método para cambiar el estado de leido
-Libro.prototype.cambiarLeido = function() {
-    this.leido = !this.leido;
-}
-
-// Función que invoca el metodo del prototipo
-function cambiarLeido(indice) {
-    miLibreria[indice].cambiarLeido();
-
+// Función para agregar un libro a la librería
+function agregarLibroALibreria(nuevo) {
+    miLibreria.push(nuevo);
+    if (miLibreria.length > 0) {
+        vacia.removeAttribute("id");
+        vacia.setAttribute("id", "datos");
+    }
     recorrer();
 }
 
-// Función de eliminar_libro
+// Función para cambiar el estado de leído de un libro
+function cambiarLeido(indice) {
+    miLibreria[indice].cambiarLeido();
+    recorrer();
+}
+
+// Función para eliminar un libro de la librería
 function eliminar_libro(indice) {
     miLibreria.splice(indice, 1);
-
-    // Cambia id de tabla cuando no tiene libros registrados
-    if (miLibreria.length === 0){
+    if (miLibreria.length === 0) {
         const con_datos = document.getElementById("datos");
         con_datos.removeAttribute("id");
         con_datos.setAttribute("id", "vacia");
@@ -45,14 +53,13 @@ function eliminar_libro(indice) {
     recorrer();
 }
 
-// Recorrer la lista
+// Función para actualizar la tabla con la información de los libros
 function recorrer() {
-
     // Elimina la información que previamente tenía la tabla
     cuerpo.innerHTML = "";
 
     // Agrega la información de cada libro en la tabla
-    for (let i = 0; i < miLibreria.length; i++){
+    for (let i = 0; i < miLibreria.length; i++) {
         const nueva_fila = document.createElement("tr");
         nueva_fila.setAttribute("class", "nueva");
         const celdaT = document.createElement("td");
@@ -75,7 +82,7 @@ function recorrer() {
         botonEliminar.textContent = "eliminar";
         eliminar.appendChild(botonEliminar);
         botonEliminar.setAttribute("id", i);
-        botonEliminar.setAttribute("class", "boton")
+        botonEliminar.setAttribute("class", "boton");
 
         nueva_fila.appendChild(celdaT);
         nueva_fila.appendChild(celdaA);
@@ -84,15 +91,15 @@ function recorrer() {
         nueva_fila.appendChild(eliminar);
         cuerpo.appendChild(nueva_fila);
 
-        // Elimina datos de la tabla, invoca la función eliminar_libro 
+        // Elimina datos de la tabla, invoca la función eliminar_libro
         botonEliminar.addEventListener("click", () => {
             eliminar_libro(i);
         });
 
-        // Cambia el estado del leido del libro, invoca la función cambiarLeido
+        // Cambia el estado del leído del libro, invoca la función cambiarLeido
         botonLeido.addEventListener("click", () => {
             cambiarLeido(i);
-        })
+        });
     }
 }
 
@@ -101,7 +108,7 @@ agregarNuevo.addEventListener("click", (e) => {
     dialogo.showModal(); // Abre el cuadro de diálogo
 });
 
-// Agrega el libro a tabla
+// Agrega el libro a la tabla
 añadir.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -122,12 +129,5 @@ cerrar.addEventListener("click", (e) => {
     dialogo.close(); // Cierra el cuadro de diálogo
 });
 
-function agregarLibroALibreria(nuevo) {
-    miLibreria.push(nuevo);
-    if (miLibreria.length > 0) {
-        vacia.removeAttribute("id");
-        vacia.setAttribute("id", "datos");
-    }
-
-    recorrer();
-}
+// Carga inicial de la tabla
+recorrer();
